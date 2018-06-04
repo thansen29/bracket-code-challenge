@@ -12,23 +12,11 @@ export class MatchComponent implements OnInit {
   @Input() sport: string;
   @Output() closeDisplay = new EventEmitter();
   @Output() viewResults = new EventEmitter<Match<any>>()
-  // viewResults = false;
-  home: boolean;
   
   constructor(){}
 
   ngOnInit() {
-    console.log(this.matchDetails);
-    // console.log(this.matchDetails.final);
-    // this.findLocation();
-  }
-
-  findLocation() {
-    // let winner = this.matchDetails.winner.name;
-    // if (this.matchDetails.matchInfo) {
-    //   if ()
-
-    // }
+    // debugger
   }
 
   toggleDisplay() {

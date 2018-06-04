@@ -10,12 +10,32 @@
   [matchDetails]="matchDetails">
 </sf-football> -->
 
+
+<!-- *ngFor="let match of allMatches" -->
+
 <section class="bracket-container">
+  <section 
+    *ngFor="let col of numCols; let i = index">
+
+    <section 
+      *ngFor="let x of Arr(perColumn[i]).fill(1); let j = index"
+      class="match-column">
+        <!-- <match 
+          *ngIf="nextMatch()"
+          [sport]="sport"
+          [matchDetails]="nextMatch()"
+          (viewResults)="openDisplay($event)"
+          (closeDisplay)="closeDisplay()">
+        </match> -->
+      hello
+    </section>
+  </section>
+      
   <match 
     *ngFor="let match of allMatches"
     [sport]="sport"
     [matchDetails]="match"
-    (viewResults)="toggleDisplay($event)"
+    (viewResults)="openDisplay($event)"
     (closeDisplay)="closeDisplay()">
   </match>
 

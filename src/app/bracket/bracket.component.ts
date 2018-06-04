@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import * as _ from 'lodash';
+
 import { Match } from '../match.interface';
 import { Team } from '../team.interface';
 import { MatchComponent } from './match/match.component';
@@ -13,28 +15,20 @@ export class BracketComponent implements OnInit {
   @Input() sport: string;
   viewResults = false;
   viewedMatch: Match<any>;
-
-
   allMatches = [];
 
-  // teams: Team[];
+  teams = {};
+  numTeams: number;
+  perColumn = [1,2,4,8,16,32,64,128,256,512];
+  numCols;
+  count = 0;
+
+  Arr = Array;
 
   constructor() { }
 
   ngOnInit() {
     this.traverseTree(this.matchDetails);
-  }
-
-  closeDisplay() {
-    console.log('closing');
-    
-    this.viewResults = false;
-  }
-
-  toggleDisplay(match: Match<any>) {
-    console.log('opening')
-    this.viewResults = true;
-    this.viewedMatch = match;
   }
 
   traverseTree(matchDetails) {
@@ -43,52 +37,54 @@ export class BracketComponent implements OnInit {
     while (queue.length) {
       match = queue.shift();
 
-      // this.displayMatch(match);
       this.allMatches.push(match);
-      console.log(match);
-      // this.generateMatches(match);
+      this.addTeam(match)
 
       for (let i = 0; i < match.seedMatches.length; i++) {
         queue.push(match.seedMatches[i]);
       }
     }
 
-    // console.log(this.allMatches);
+    this.uniqueCount();
   }
 
-  generateMatches(match) {
-    let hasSeeds = Boolean(match.seedMatches.length);
-    let newMatch;
-    let s = 'hello';
-    if (hasSeeds) {
-      // newMatch = new MatchComponent(s);
-      // newMatch = new MatchComponent(hasSeeds, match.winner, match.seedMatches[0],
-      //                                   match.seedMatches[1], match.matchInfo);
-
+  addTeam(match: Match<any>) {
+    let name = match.winner.name;
+    if (this.teams[name]) {
+      this.teams[name]++;
     } else {
-      // newMatch = new MatchComponent(s);      
-      // newMatch = new MatchComponent(hasSeeds, match.winner.name);
+      this.teams[name] = 1;
     }
+  }
 
-    this.allMatches.push(newMatch);
+  uniqueCount() {
+    this.numTeams = _.keys(this.teams).length;
+    this.getNumColumns(this.numTeams);
+  }
 
-    // let completedMatch;
-    // if (match.seedMatches.length) {
-    //   completedMatch = {
-    //     winner: match.winner.name,
-    //     seed1: match.seedMatches[0].winner,
-    //     seed2: match.seedMatches[1].winner,
-    //     results: match.matchInfo
-    //   }
-    // } else {
-    //   completedMatch = {
-    //     winner: match.winner.name
-    //   }
-    // }
-
-    // this.allMatches.push(completedMatch);
-    // this.allMatches.push(newMatch);
+  getNumColumns(numTeams: number) {
+    let numCols = Math.ceil(Math.log(numTeams) / Math.log(2)) + 1; // + 1 to include champion as a column
+    this.perColumn = this.perColumn.slice(0, numCols);
     
+    this.numCols = Array(numCols).fill(1); 
+  }
+
+  nextMatch() {
+    this.count++;
+    if(this.allMatches[this.count-1]) {
+      return this.allMatches[this.count-1];
+    } else {
+      return null;
+    }
+  }
+
+  closeDisplay() {
+    this.viewResults = false;
+  }
+
+  openDisplay(match: Match<any>) {
+    this.viewResults = true;
+    this.viewedMatch = match;
   }
 
 }
