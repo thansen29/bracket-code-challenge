@@ -10,8 +10,27 @@
   [matchDetails]="matchDetails">
 </sf-football> -->
 
-<match 
-  *ngFor="let match of allMatches"
-  [sport]="sport"
-  [matchDetails]="match">
-</match>
+<section class="bracket-container">
+  <match 
+    *ngFor="let match of allMatches"
+    [sport]="sport"
+    [matchDetails]="match"
+    (viewResults)="toggleDisplay($event)"
+    (closeDisplay)="closeDisplay()">
+  </match>
+
+</section>
+
+<sf-football
+  *ngIf="sport === 'football' && viewResults"
+  [matchInfo]="viewedMatch.matchInfo"
+  [matchDetails]="viewedMatch"
+  (closeDisplay)="closeDisplay()">
+</sf-football>
+
+<sf-soccer
+  *ngIf="sport === 'soccer' && viewResults"
+  [matchInfo]="viewedMatch.matchInfo"
+  [matchDetails]="viewedMatch"
+  (closeDisplay)="closeDisplay()">
+</sf-soccer>

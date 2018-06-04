@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Team } from '../../team.interface';
 import { Match } from '../../match.interface';
 
@@ -10,15 +10,33 @@ import { Match } from '../../match.interface';
 export class MatchComponent implements OnInit {
   @Input() matchDetails: Match<any>;
   @Input() sport: string;
-  viewResults = false;
+  @Output() closeDisplay = new EventEmitter();
+  @Output() viewResults = new EventEmitter<Match<any>>()
+  // viewResults = false;
+  home: boolean;
   
   constructor(){}
 
   ngOnInit() {
+    console.log(this.matchDetails);
+    // console.log(this.matchDetails.final);
+    // this.findLocation();
   }
 
-  displayResults() {
-    this.viewResults = true;
+  findLocation() {
+    // let winner = this.matchDetails.winner.name;
+    // if (this.matchDetails.matchInfo) {
+    //   if ()
+
+    // }
+  }
+
+  toggleDisplay() {
+    this.closeDisplay.emit();
+
+    setTimeout(() => {
+      this.viewResults.emit(this.matchDetails);
+    }, 0)
   }
 
 }

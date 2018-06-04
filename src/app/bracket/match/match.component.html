@@ -1,21 +1,30 @@
-<p>
-  match works!
-  <button 
-    *ngIf="matchDetails.matchInfo"
-    (click)="displayResults()">
-    Display results
-  </button>
-</p>
+<div 
+  class="match-container"
+  [ngClass]="{ left: matchDetails.seedMatches.length }">
+  
+    <div class="winner">
+      <div 
+        class="winner-text"
+        [ngClass]="{ clickable: matchDetails.matchInfo }"
+        (click)="matchDetails.matchInfo ? toggleDisplay() : null">
+        {{ matchDetails.winner.name }}
+      </div>
+    </div>
+</div>
 
 
-<sf-football
-  *ngIf="sport === 'football' && viewResults"
-  [matchInfo]="matchDetails.matchInfo"
-  [matchDetails]="matchDetails">
-</sf-football>
 
-<sf-soccer
-  *ngIf="sport === 'soccer' && viewResults"
-  [matchInfo]="matchDetails.matchInfo"
-  [matchDetails]="matchDetails">
-</sf-soccer>
+
+
+
+  <!-- <sf-football
+    *ngIf="sport === 'football' && viewResults"
+    [matchInfo]="matchDetails.matchInfo"
+    [matchDetails]="matchDetails">
+  </sf-football>
+  
+  <sf-soccer
+    *ngIf="sport === 'soccer' && viewResults"
+    [matchInfo]="matchDetails.matchInfo"
+    [matchDetails]="matchDetails">
+  </sf-soccer> -->

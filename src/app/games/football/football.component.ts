@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FootballInfo, FootballTeamStats } from './football-info.interface';
 import { Team } from '../../team.interface';
 import { Match } from '../../match.interface';
@@ -12,6 +12,7 @@ export class FootballComponent implements OnInit {
 
   @Input() matchInfo: FootballInfo;
   @Input() matchDetails: Match<FootballTeamStats>;
+  @Output() closeDisplay = new EventEmitter();
   homeTeam: Team;
   awayTeam: Team;
 
@@ -22,6 +23,10 @@ export class FootballComponent implements OnInit {
       this.homeTeam = this.matchDetails.seedMatches[0].winner;
       this.awayTeam = this.matchDetails.seedMatches[1].winner;
     }
+  }
+
+  closeView() {
+    this.closeDisplay.emit();
   }
 
 }

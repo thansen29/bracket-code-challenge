@@ -11,6 +11,8 @@ import { MatchComponent } from './match/match.component';
 export class BracketComponent implements OnInit {
   @Input() matchDetails: Match<any>;
   @Input() sport: string;
+  viewResults = false;
+  viewedMatch: Match<any>;
 
 
   allMatches = [];
@@ -23,6 +25,18 @@ export class BracketComponent implements OnInit {
     this.traverseTree(this.matchDetails);
   }
 
+  closeDisplay() {
+    console.log('closing');
+    
+    this.viewResults = false;
+  }
+
+  toggleDisplay(match: Match<any>) {
+    console.log('opening')
+    this.viewResults = true;
+    this.viewedMatch = match;
+  }
+
   traverseTree(matchDetails) {
     let queue = [matchDetails];
     let match;
@@ -31,7 +45,7 @@ export class BracketComponent implements OnInit {
 
       // this.displayMatch(match);
       this.allMatches.push(match);
-      // console.log(match);
+      console.log(match);
       // this.generateMatches(match);
 
       for (let i = 0; i < match.seedMatches.length; i++) {
