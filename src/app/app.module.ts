@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MomentModule } from 'ngx-moment';
 
 
 import { AppComponent } from './app.component';
@@ -18,7 +19,8 @@ import { MatchComponent } from './bracket/match/match.component';
     MatchComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MomentModule
   ],
   providers: [],
   bootstrap: [AppComponent]
