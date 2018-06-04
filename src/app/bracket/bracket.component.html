@@ -1,42 +1,11 @@
-<main 
-  class="bracket-container">
+<sf-soccer
+  *ngIf="sport === 'soccer'"
+  [matchInfo]="matchDetails.matchInfo"
+  [matchDetails]="matchDetails">
+</sf-soccer>
 
-  <sf-football
-    [matchInfo]="matchDetails.matchInfo"
-    [matchDetails]="matchDetails">
-  </sf-football>
-
-  <!-- <sf-soccer
-    [matchInfo]="matchDetails.matchInfo">
-  </sf-soccer> -->
-
-
-
-
-
-<!-- 
-  <div class="match">
-
-    <div class="winner">
-      <div class="winner-text">
-        {{ matchDetails.winner.name}}
-      </div>
-    </div>
-
-  </div> -->
-
-  <!-- <div 
-    class="match"
-    *ngFor="let match of allMatches">
-  
-    <div class="winner">
-      <div class="winner-text">
-        {{ match.winner }}
-      </div>
-
-    </div>
-  
-  </div> -->
-
-
-</main>
+<sf-football
+  *ngIf="sport === 'football'"
+  [matchInfo]="matchDetails.matchInfo"
+  [matchDetails]="matchDetails">
+</sf-football>

@@ -10,7 +10,9 @@ import { MatchComponent } from './match/match.component';
 })
 export class BracketComponent implements OnInit {
   // @Input() matchDetails: Match<T>
-  @Input() matchDetails;
+  @Input() matchDetails: Match<any>;
+  @Input() sport: string;
+
 
   // allMatches = [];
 

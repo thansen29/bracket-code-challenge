@@ -1,17 +1,29 @@
-<div class="football-info">
-  <div class="football-header">
+<div class="sport-info">
+  <div class="sport-header">
     <span>
-      <div class="stat-header">{{ homeTeam.name }}</div>
-      <div>Home</div>
+      <div 
+        class="stat-header"
+        [ngClass]="{ 'normal': matchInfo.home.score < matchInfo.away.score }">
+        {{ homeTeam.name }}
+      </div>
+
+      <div class="location">Home</div>
+
     </span>
 
     <span>
-      <div class="stat-header">{{ awayTeam.name }}</div>
-      <div>Away</div>
+      <div 
+        class="stat-header"
+        [ngClass]="{ 'normal': matchInfo.away.score < matchInfo.home.score }">
+        {{ awayTeam.name }}
+      </div>
+      
+      <div class="location">Away</div>
+      
     </span>
   </div>
 
-  <div class="football-item">
+  <div class="sport-item">
     <span>
       <header class="stat-header">Score</header> 
       <main>{{ matchInfo.home.score }}</main>
@@ -23,7 +35,7 @@
     </span>
   </div>
 
-  <div class="football-item">
+  <div class="sport-item">
     <span>
       <header class="stat-header">Touchdowns</header>
       <main>{{ matchInfo.home.touchDowns }}</main>
@@ -35,7 +47,7 @@
     </span>
   </div>
 
-  <div class="football-item">
+  <div class="sport-item">
     <span>
       <header class="stat-header">Field Goals</header>
       <main>{{ matchInfo.home.fieldGoals }}</main>
