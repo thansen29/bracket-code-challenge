@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Team } from '../../team.interface';
 import { Match } from '../../match.interface';
 
@@ -8,12 +8,17 @@ import { Match } from '../../match.interface';
   styleUrls: ['./match.component.less']
 })
 export class MatchComponent implements OnInit {
-
+  @Input() matchDetails: Match<any>;
+  @Input() sport: string;
+  viewResults = false;
+  
   constructor(){}
-  // constructor(private hasSeeds: boolean, private winner: Team, private firstSeed?: Match<any>,
-  //             private secondSeed?: Match<any>, private results?) { }
 
   ngOnInit() {
+  }
+
+  displayResults() {
+    this.viewResults = true;
   }
 
 }

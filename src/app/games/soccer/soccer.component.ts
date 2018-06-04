@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SoccerInfo } from './soccer-info.interface';
+import { SoccerInfo, SoccerTeamStats } from './soccer-info.interface';
 import { Match } from '../../match.interface';
 import { Team } from '../../team.interface';
 
@@ -11,7 +11,7 @@ import { Team } from '../../team.interface';
 export class SoccerComponent implements OnInit {
 
   @Input() matchInfo: SoccerInfo;
-  @Input() matchDetails: Match<any>;
+  @Input() matchDetails: Match<SoccerTeamStats>;
   homeTeam: Team;
   awayTeam: Team;
   

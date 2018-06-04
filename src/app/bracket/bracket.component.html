@@ -1,4 +1,4 @@
-<sf-soccer
+<!-- <sf-soccer
   *ngIf="sport === 'soccer'"
   [matchInfo]="matchDetails.matchInfo"
   [matchDetails]="matchDetails">
@@ -8,4 +8,10 @@
   *ngIf="sport === 'football'"
   [matchInfo]="matchDetails.matchInfo"
   [matchDetails]="matchDetails">
-</sf-football>
+</sf-football> -->
+
+<match 
+  *ngFor="let match of allMatches"
+  [sport]="sport"
+  [matchDetails]="match">
+</match>

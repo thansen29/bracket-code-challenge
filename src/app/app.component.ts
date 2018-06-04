@@ -10,7 +10,7 @@ import { FootballInfo } from './games/football/football-info.interface';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   soccerMatch: Match<SoccerInfo> = soccerMatch;
   footballMatch: Match<FootballInfo> = footballMatch;
 

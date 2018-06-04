@@ -9,47 +9,54 @@ import { MatchComponent } from './match/match.component';
   styleUrls: ['./bracket.component.less']
 })
 export class BracketComponent implements OnInit {
-  // @Input() matchDetails: Match<T>
   @Input() matchDetails: Match<any>;
   @Input() sport: string;
 
 
-  // allMatches = [];
+  allMatches = [];
 
   // teams: Team[];
 
   constructor() { }
 
   ngOnInit() {
-    // this.buildMatches(this.matchDetails);
+    this.traverseTree(this.matchDetails);
   }
 
-  // buildMatches(matchDetails) {
-  //   let queue = [matchDetails];
-  //   let match;
-  //   while (queue.length) {
-  //     match = queue.shift();
+  traverseTree(matchDetails) {
+    let queue = [matchDetails];
+    let match;
+    while (queue.length) {
+      match = queue.shift();
 
-  //     this.displayMatch(match);
+      // this.displayMatch(match);
+      this.allMatches.push(match);
+      // console.log(match);
+      // this.generateMatches(match);
 
-  //     for (let i = 0; i < match.seedMatches.length; i++) {
-  //       queue.push(match.seedMatches[i]);
-  //     }
-  //   }
+      for (let i = 0; i < match.seedMatches.length; i++) {
+        queue.push(match.seedMatches[i]);
+      }
+    }
 
-  //   console.log(this.allMatches);
-  // }
+    // console.log(this.allMatches);
+  }
 
-  // displayMatch(match) {
-  //   let hasSeeds = match.seedMatches.length;
-  //   let newMatch;
-  //   if (hasSeeds) {
-  //     newMatch = new MatchComponent(hasSeeds, match.winner, match.seedMatches[0],
-  //                                       match.seedMatches[1], match.matchInfo);
+  generateMatches(match) {
+    let hasSeeds = Boolean(match.seedMatches.length);
+    let newMatch;
+    let s = 'hello';
+    if (hasSeeds) {
+      // newMatch = new MatchComponent(s);
+      // newMatch = new MatchComponent(hasSeeds, match.winner, match.seedMatches[0],
+      //                                   match.seedMatches[1], match.matchInfo);
 
-  //   } else {
-  //     newMatch = new MatchComponent(hasSeeds, match.winner.name);
-  //   }
+    } else {
+      // newMatch = new MatchComponent(s);      
+      // newMatch = new MatchComponent(hasSeeds, match.winner.name);
+    }
+
+    this.allMatches.push(newMatch);
 
     // let completedMatch;
     // if (match.seedMatches.length) {
@@ -66,8 +73,8 @@ export class BracketComponent implements OnInit {
     // }
 
     // this.allMatches.push(completedMatch);
-  //   this.allMatches.push(newMatch);
+    // this.allMatches.push(newMatch);
     
-  // }
+  }
 
 }

@@ -1,3 +1,21 @@
 <p>
   match works!
+  <button 
+    *ngIf="matchDetails.matchInfo"
+    (click)="displayResults()">
+    Display results
+  </button>
 </p>
+
+
+<sf-football
+  *ngIf="sport === 'football' && viewResults"
+  [matchInfo]="matchDetails.matchInfo"
+  [matchDetails]="matchDetails">
+</sf-football>
+
+<sf-soccer
+  *ngIf="sport === 'soccer' && viewResults"
+  [matchInfo]="matchDetails.matchInfo"
+  [matchDetails]="matchDetails">
+</sf-soccer>
