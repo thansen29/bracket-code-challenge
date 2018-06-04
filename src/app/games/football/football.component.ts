@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FootballInfo } from './football-info.interface';
+import { Team } from '../../team.interface';
+import { Match } from '../../match.interface';
 
 @Component({
   selector: 'sf-football',
@@ -9,10 +11,17 @@ import { FootballInfo } from './football-info.interface';
 export class FootballComponent implements OnInit {
 
   @Input() matchInfo: FootballInfo;
+  @Input() matchDetails: Match<any>;
+  homeTeam: Team;
+  awayTeam: Team;
 
   constructor() { }
 
   ngOnInit() {
+    if (this.matchDetails.seedMatches.length) {
+      this.homeTeam = this.matchDetails.seedMatches[0].winner;
+      this.awayTeam = this.matchDetails.seedMatches[1].winner;
+    }
   }
 
 }

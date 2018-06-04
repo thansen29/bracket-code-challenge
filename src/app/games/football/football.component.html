@@ -1,10 +1,51 @@
 <div class="football-info">
   <div class="football-header">
-    <span>Home</span>
-    <span>Away</span>
+    <span>
+      <div class="stat-header">{{ homeTeam.name }}</div>
+      <div>Home</div>
+    </span>
+
+    <span>
+      <div class="stat-header">{{ awayTeam.name }}</div>
+      <div>Away</div>
+    </span>
   </div>
+
   <div class="football-item">
-    <span>{{ matchInfo.home.score }}</span>
-    <span>{{ matchInfo.away.score }}</span>
+    <span>
+      <header class="stat-header">Score</header> 
+      <main>{{ matchInfo.home.score }}</main>
+    </span>
+
+    <span>
+      <header class="stat-header">Score</header>
+      <main>{{ matchInfo.away.score }}</main>
+    </span>
   </div>
+
+  <div class="football-item">
+    <span>
+      <header class="stat-header">Touchdowns</header>
+      <main>{{ matchInfo.home.touchDowns }}</main>
+    </span>
+
+    <span>
+      <header class="stat-header">Touchdowns</header>
+      <main>{{ matchInfo.away.touchDowns }}</main>
+    </span>
+  </div>
+
+  <div class="football-item">
+    <span>
+      <header class="stat-header">Field Goals</header>
+      <main>{{ matchInfo.home.fieldGoals }}</main>
+    </span>
+
+    <span>
+      <header class="stat-header">Field Goals</header>
+      <main>{{ matchInfo.away.fieldGoals }}</main>
+    </span>
+  </div>
+
+
 </div>

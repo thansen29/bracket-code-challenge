@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Match } from './match.interface';
 import { footballMatch } from './football-match.stub';
 import { SoccerInfo } from './games/soccer/soccer-info.interface';
@@ -10,7 +10,10 @@ import { FootballInfo } from './games/football/football-info.interface';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   soccerMatch: Match<SoccerInfo> = soccerMatch;
   footballMatch: Match<FootballInfo> = footballMatch;
+
+  ngOnInit() {
+  }
 }
