@@ -36,7 +36,12 @@
     class="winner"
     [ngClass]="{ clickable: matchDetails.matchInfo }"
     (click)="matchDetails.matchInfo ? toggleDisplay() : null">
-    {{ matchDetails.winner.name }}
+
+    <div 
+      class="winner-text"
+      [ngClass]="{ bottom: index === 1, top: index === 0 }">
+      {{ matchDetails.winner.name }}
+    </div>
   </div>
 
   <ul
@@ -44,10 +49,13 @@
     *ngIf="matchDetails">
 
     <li
-      *ngFor="let match of matchDetails.seedMatches">
-
+      class="match-item"
+      *ngFor="let match of matchDetails.seedMatches; let i = index"
+      [ngClass]="{ tops: i === 0 }">
+      
       <sf-match
-        [ngStyle]="{ position: 'relative' }"      
+        [ngStyle]="{ position: 'relative' }" 
+        [index]="i"    
         [matchDetails]="match"
         [sport]="sport">
       </sf-match>

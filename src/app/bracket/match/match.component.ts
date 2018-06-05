@@ -10,6 +10,7 @@ import { Match } from '../../match.interface';
 export class MatchComponent implements OnInit {
   @Input() matchDetails: Match<any>;
   @Input() sport: string;
+  @Input() index: number;
   @Output() closeDisplay = new EventEmitter();
   @Output() viewResults = new EventEmitter<Match<any>>()
   // viewResults = false;
