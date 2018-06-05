@@ -1,0 +1,19 @@
+<sf-soccer
+  *ngIf="sport === 'soccer' && viewResults"
+  [matchDetails]="matchDetails"
+  [matchInfo]="matchDetails.matchInfo"
+  (closeDisplay)="closeView()"
+  [homeTeam]="homeTeam"
+  [awayTeam]="awayTeam">
+</sf-soccer>
+
+<sf-football
+  *ngIf="sport === 'football' && viewResults"
+  [matchDetails]="matchDetails"
+  [matchInfo]="matchDetails.matchInfo"
+  (closeDisplay)="closeView()"
+  [homeTeam]="homeTeam"
+  [awayTeam]="awayTeam">
+</sf-football>
+
+

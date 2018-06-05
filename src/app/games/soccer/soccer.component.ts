@@ -9,21 +9,15 @@ import { Team } from '../../team.interface';
   styleUrls: ['./soccer.component.less']
 })
 export class SoccerComponent implements OnInit {
-
   @Input() matchInfo: SoccerInfo;
   @Input() matchDetails: Match<SoccerTeamStats>;
+  @Input() homeTeam: Team;
+  @Input() awayTeam: Team;
   @Output() closeDisplay = new EventEmitter();
-  
-  homeTeam: Team;
-  awayTeam: Team;
   
   constructor() { }
 
   ngOnInit() {
-    if (this.matchDetails.seedMatches.length) {
-      this.homeTeam = this.matchDetails.seedMatches[0].winner;
-      this.awayTeam = this.matchDetails.seedMatches[1].winner;
-    }
   }
 
   closeView() {

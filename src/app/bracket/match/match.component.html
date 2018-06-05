@@ -3,7 +3,6 @@
   <div 
     class="winner">
 
-    <!-- [ngClass]="{ bottom: index === 1, top: index === 0 }" -->
     <div class="winner-text">
 
       <button
@@ -22,12 +21,10 @@
     class="list-container"
     *ngIf="matchDetails">
 
-    <!-- [ngClass]="{ tops: i === 0 }" -->
     <li
       class="match-item"
       *ngFor="let match of matchDetails.seedMatches">
 
-        <!-- [index]="i"     -->
       <sf-match
         [ngStyle]="{ position: 'relative' }" 
         [matchDetails]="match"
@@ -38,18 +35,11 @@
 
   </ul>
 
-  <sf-football
-    *ngIf="sport === 'football' && viewResults"
+  <sf-sport
+    [sport]="sport"
     [matchInfo]="matchDetails.matchInfo"
     [matchDetails]="matchDetails"
-    (closeDisplay)="closeDisplay()">
-  </sf-football>
-
-  <sf-soccer
-    *ngIf="sport === 'soccer' && viewResults"
-    [matchInfo]="matchDetails.matchInfo"
-    [matchDetails]="matchDetails"
-    (closeDisplay)="closeDisplay()">
-  </sf-soccer>
-
+    (closeDisplay)="closeDisplay()"
+    [viewResults]="viewResults">
+  </sf-sport>
 </div>
