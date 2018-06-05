@@ -3,11 +3,18 @@
   <div 
     class="winner">
 
-    <div 
-      class="winner-text"
-      [ngClass]="{ clickable: matchDetails.matchInfo, bottom: index === 1, top: index === 0 }"
-      (click)="matchDetails.matchInfo ? toggleDisplay() : null">
-      {{ matchDetails.winner.name }}
+    <!-- [ngClass]="{ bottom: index === 1, top: index === 0 }" -->
+    <div class="winner-text">
+
+      <button
+        *ngIf="matchDetails.matchInfo"
+        class="view-button"
+        [ngClass]="{ clickable: matchDetails.matchInfo }"
+        (click)="matchDetails.matchInfo ? toggleDisplay() : null">
+        View Results
+      </button>
+
+      <span [ngClass]="{ margin: matchDetails.matchInfo }">{{ matchDetails.winner.name }}</span>
     </div>
   </div>
 
@@ -15,14 +22,14 @@
     class="list-container"
     *ngIf="matchDetails">
 
+    <!-- [ngClass]="{ tops: i === 0 }" -->
     <li
       class="match-item"
-      *ngFor="let match of matchDetails.seedMatches; let i = index"
-      [ngClass]="{ tops: i === 0 }">
-      
+      *ngFor="let match of matchDetails.seedMatches">
+
+        <!-- [index]="i"     -->
       <sf-match
         [ngStyle]="{ position: 'relative' }" 
-        [index]="i"    
         [matchDetails]="match"
         [sport]="sport">
       </sf-match>
@@ -31,7 +38,7 @@
 
   </ul>
 
-  <!-- <sf-football
+  <sf-football
     *ngIf="sport === 'football' && viewResults"
     [matchInfo]="matchDetails.matchInfo"
     [matchDetails]="matchDetails"
@@ -43,6 +50,6 @@
     [matchInfo]="matchDetails.matchInfo"
     [matchDetails]="matchDetails"
     (closeDisplay)="closeDisplay()">
-  </sf-soccer> -->
+  </sf-soccer>
 
 </div>

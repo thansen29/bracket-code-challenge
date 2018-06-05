@@ -1,26 +1,7 @@
 <section class="bracket-container">
-
   <sf-match
     [ngStyle]="{ width: '100%', position: 'relative' }"
     [sport]="sport"
-    [matchDetails]="matchDetails"
-    (viewResults)="openDisplay($event)"
-    (closeDisplay)="closeDisplay()">
+    [matchDetails]="matchDetails">
   </sf-match>
-
 </section>
-
-<!-- only the first match is here, every other match is recursively rendered from match -->
-<sf-football
-  *ngIf="sport === 'football' && viewResults"
-  [matchInfo]="viewedMatch.matchInfo"
-  [matchDetails]="viewedMatch"
-  (closeDisplay)="closeDisplay()">
-</sf-football>
-
-<sf-soccer
-  *ngIf="sport === 'soccer' && viewResults"
-  [matchInfo]="viewedMatch.matchInfo"
-  [matchDetails]="viewedMatch"
-  (closeDisplay)="closeDisplay()">
-</sf-soccer>
