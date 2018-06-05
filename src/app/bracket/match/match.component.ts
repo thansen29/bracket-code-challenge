@@ -3,7 +3,7 @@ import { Team } from '../../team.interface';
 import { Match } from '../../match.interface';
 
 @Component({
-  selector: 'match',
+  selector: 'sf-match',
   templateUrl: './match.component.html',
   styleUrls: ['./match.component.less']
 })
@@ -12,12 +12,23 @@ export class MatchComponent implements OnInit {
   @Input() sport: string;
   @Output() closeDisplay = new EventEmitter();
   @Output() viewResults = new EventEmitter<Match<any>>()
+  // viewResults = false;
+
+  // allMatches = [];
+  
   
   constructor(){}
 
   ngOnInit() {
-    // debugger
   }
+
+  // toggleDisplay() {
+  //   this.viewResults = true;
+  // }
+
+  // closeDisplay() {
+  //   this.viewResults = false;
+  // }
 
   toggleDisplay() {
     this.closeDisplay.emit();
